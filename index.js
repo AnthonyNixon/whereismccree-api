@@ -25,10 +25,10 @@ exports.getMcreeLocation = function getMcreeLocation(req, res) {
     hourDiff = 12 - UTCHour;
 
 
-    if (hourDiff > 0) {
+    if (hourDiff >= 0) {
         filename = 'UTC+' + hourDiff + '_00.txt';
     } else {
-        filename = 'UTC-' + hourDiff + '_00.txt';
+        filename = 'UTC' + hourDiff + '_00.txt';
     }
 
 
@@ -38,6 +38,7 @@ exports.getMcreeLocation = function getMcreeLocation(req, res) {
             console.log({"locations": locationList});
             // Continue with your processing here.
             var locations = locationList.split('\n');
+            locations.pop();
             console.log(locations);
 
             location = locations[Math.floor(Math.random()*locations.length)];
